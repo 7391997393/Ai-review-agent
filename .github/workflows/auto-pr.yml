@@ -18,8 +18,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if gh pr view "${GITHUB_REF_NAME}" --repo "${GITHUB_REPOSITORY}" > /dev/null 2>&1; then
-            echo "Pull request already exists for ${GITHUB_REF_NAME}"
+          OPEN_PR=$(gh pr list \
+            --repo "${GITHUB_REPOSITORY}" \
+            --head "${GITHUB_REF_NAME}" \
+            --base main \
+            --state open \
+            --json number \
+            --jq 'length')
+
+          if [ "$OPEN_PR" -gt 0 ]; then
+            echo "Open pull request already exists for ${GITHUB_REF_NAME}"
           else
             gh pr create \
               --repo "${GITHUB_REPOSITORY}" \
