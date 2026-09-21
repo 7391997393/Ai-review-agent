@@ -46,3 +46,5 @@ def calculate_total(items):
     return total
 
 print("AI Code Review is working")
+
+print("after Gemini failed to run the code review")
