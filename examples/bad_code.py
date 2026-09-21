@@ -44,3 +44,5 @@ def calculate_total(items):
     print("Total:", total)  # Standards
 
     return total
+
+print("AI Code Review is working")
