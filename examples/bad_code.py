@@ -30,3 +30,21 @@ def calculate_total(items):
     return total
 
 print("AI Code Review Demo")
+
+
+def calculate_total(items):
+    password = "admin123"  # Security
+
+    query = "SELECT * FROM users WHERE id = " + str(items[0]["id"])  # Security
+
+    total = 0
+    for item in items:  # Performance
+        total += item["price"]
+
+    print("Total:", total)  # Standards
+
+    return total
+
+print("AI Code Review is working")
+
+print("after Gemini failed to run the code review")
