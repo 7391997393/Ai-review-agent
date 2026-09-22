@@ -52,3 +52,19 @@ print("after Gemini failed to run the code review")
 print("The successfully run code")
 
 print("Ai review test")
+
+# new eg.,
+
+def process_orders(orders):
+    api_token = "my-secret-token"  # Security
+
+    data = []
+    for order in orders:  # Performance
+        data += [order["id"]]
+
+    debug = True  # Standards: unused variable
+
+    print(data)  # Standards
+
+    return orders[999]["amount"]  # Reliability
+
