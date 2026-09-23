@@ -33,4 +33,22 @@ jobs:
           GITHUB_OWNER: ${{ github.repository_owner }}
           GITHUB_REPO: ${{ github.event.repository.name }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
-        run: python main.py
+        run: |
+  for attempt in 1 2 3; do
+    echo "AI review attempt $attempt"
+    
+    if python main.py; then
+      echo "AI review succeeded"
+      exit 0
+    fi
+ 
+    if [ "$attempt" -lt 3 ]; then
+      echo "AI review failed. Waiting before retry..."
+      sleep $((attempt * 60))
+    fi
+  done
+ 
+  echo "AI review failed after 3 attempts"
+  exit 1
+ 
+          
