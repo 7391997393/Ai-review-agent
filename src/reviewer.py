@@ -8,15 +8,14 @@ from src.schemas import ReviewResult
 CATEGORIES = ["security", "standards", "tests", "performance"]
 
 
-def build_model(settings: Settings) -> ChatOpenAI:
-    kwargs = {
-        "model": settings.openai_model,
-        "temperature": 0,
-        "api_key": settings.openai_api_key,
-    }
-
-    if settings.openai_base_url:
-        kwargs["base_url"] = settings.openai_base_url
+def build_model(settings) -> ChatOpenAI:
+    return ChatOpenAI(
+        settings.openai_model,
+        api_key=settings.openai_api_key,
+        base_url=settings.openai_base_url,
+        timeout=120,
+        max_retries=6,
+    )
 
     return ChatOpenAI(**kwargs)
 
