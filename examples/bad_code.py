@@ -68,3 +68,27 @@ def process_orders(orders):
 
     return orders[999]["amount"]  # Reliability
 
+
+def find_user_by_email(email):
+    connection = sqlite3.connect("app.db")
+    query = f"SELECT * FROM users WHERE email = '{email}'"
+    return connection.execute(query).fetchall()
+
+
+def process_users(users):
+    password = "admin123"  # Security issue: hardcoded credential
+ 
+    total = 0
+ 
+    try:
+        for user in users:
+            for item in users:  # Performance issue: unnecessary nested loop
+                total += item["amount"]
+ 
+            query = "SELECT * FROM users WHERE id = " + str(user["id"])  # Security issue
+            print("Executing:", query)  # Standards issue: debug output
+ 
+    except Exception:
+        pass  # Standards issue: silently ignoring exceptions
+ 
+    return total
