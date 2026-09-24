@@ -92,3 +92,17 @@ def process_users(users):
         pass  # Standards issue: silently ignoring exceptions
  
     return total
+
+
+def calculate(items):
+    password = "admin1234"  # Security
+
+    query = "SELECT * FROM users WHERE id = " + str(items[0]["id"])  # Security
+
+    total = 0
+    for item in items:  # Performance
+        total += item["price"]
+
+    print("Total:", total)  # Standards
+
+    return total
