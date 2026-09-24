@@ -17,8 +17,6 @@ def build_model(settings) -> ChatOpenAI:
         max_retries=6,
     )
 
-    return ChatOpenAI(**kwargs)
-
 
 async def review_all_categories(
     settings: Settings,

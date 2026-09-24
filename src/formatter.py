@@ -39,7 +39,7 @@ def format_review(
     ]
 
     order = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
-    sorted_findings = sorted(findings, key=lambda x: order[x.severity])
+    sorted_findings = sorted(findings, key=lambda x: order.get(x.severity, 5))
 
     for finding in sorted_findings:
         location = finding.file

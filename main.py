@@ -35,9 +35,6 @@ async def async_main() -> None:
     settings = Settings.from_env()
     pr_number = get_pr_number()
 
-    if not settings.github_owner or not settings.github_repo:
-        raise RuntimeError("GITHUB_OWNER and GITHUB_REPO are required.")
-
     github = GitHubMCPClient(settings)
     await github.connect()
 
